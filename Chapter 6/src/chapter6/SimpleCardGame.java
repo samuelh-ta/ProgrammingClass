@@ -27,16 +27,12 @@ public class SimpleCardGame {
 	    }
 	    
 	    static void game() {
-
-	    	for (int x = 1; x < 5; x++) {
-	    	// Red card is higher of 2
-	    	// Black card is lower
 	    	
-	    	//tie
-	    	//One holding red card wins
+	    	int pWon = 0;
+	    	int cWon = 0;
+	    	int tie = 0;
 	    	
-	    	//another tie
-	    	//One with diamonds or spades wins
+	    	for (int x = 1; x <= 5; x++) {
 	    	
 	    	int[] cardArray = createCards();
 	    	
@@ -44,17 +40,121 @@ public class SimpleCardGame {
 	    	int pSuit = cardArray[1];
 	    	int cValue = cardArray[2];
 	    	int cSuit = cardArray[3];
+	    	
+	    	JOptionPane.showMessageDialog(null,"The computer picked a " + cValue + getSuit(cSuit) + " and you picked a " + pValue + getSuit(pSuit),"Output",JOptionPane.PLAIN_MESSAGE);
+	    	
+	    	
+	    	if (isTie(pValue,pSuit,cValue,cSuit)) {
+	    		tie += 1;
+	    		JOptionPane.showMessageDialog(null,"You tied this round","Output",JOptionPane.PLAIN_MESSAGE);
+	    	}else if (firstLevel(pValue,pSuit,cValue,cSuit)) {
+	    		pWon += 1;
+	    		JOptionPane.showMessageDialog(null,"You won this round","Output",JOptionPane.PLAIN_MESSAGE);
+	    	}else {
+	    		cWon += 1;
+	    		JOptionPane.showMessageDialog(null,"You lost this round","Output",JOptionPane.PLAIN_MESSAGE);
 	    	}
+	    	
+	    	}
+	    	
+	    	JOptionPane.showMessageDialog(null,"Score: You: " + pWon + " Com: " + cWon + " Tie: " + tie,"Output",JOptionPane.PLAIN_MESSAGE);
 	    }
 	    
-	    static void firstLevel(int pValue,int pSuit,int cValue,int cSuit) {
+	    static boolean firstLevel(int pValue,int pSuit,int cValue,int cSuit) {
+	    	boolean playerWon = false;
+	    	boolean needSecondLevel = false;
 	    	
 	    	if (cSuit == 1 || cSuit == 2) {
-	    		
+	    		if (pValue > cValue) {
+	    			playerWon = true;
+	    		}else if (cValue > pValue) {
+	    			playerWon = false;
+	    		}else {
+	    			needSecondLevel = true;
+	    			secondLevel(pValue,pSuit,pValue,cSuit);
+	    		}
 	    	}else if(cSuit == 3 || cSuit == 4) {
-	    		
+	    		if(pValue < cValue) {
+	    			playerWon = true;
+	    		}else if (cValue < pValue) {
+	    			playerWon = false;
+	    		}else {
+	    			needSecondLevel = true;
+	    			secondLevel(pValue,pSuit,pValue,cSuit);
+	    		}
 	    	}
 	    	
+	    	if (needSecondLevel) {
+	    		if (secondLevel(pValue,pSuit,pValue,cSuit) == true) {
+	    			playerWon = true;
+	    		}else {
+	    			playerWon = false;
+	    		}
+	    	}
+	    	
+	    	return playerWon;
+	    }
+	    
+	    static boolean secondLevel(int pValue,int pSuit,int cValue,int cSuit) {
+	    	boolean playerWon = false;
+	    	boolean pRed = (pSuit == 1 || pSuit == 2);
+	    	boolean cRed = (cSuit == 1 || cSuit == 2);
+	    	
+	    	if (pRed && cRed) {
+	    		thirdLevel(pValue,pSuit,pValue,cSuit);
+	    	}else if (pRed) {
+	    		playerWon = true;
+	    	}else if (cRed) {
+	    		playerWon = false;
+	    	}
+	    			
+	    			
+	    	return playerWon;
+	    }
+	    
+	    static boolean thirdLevel(int pValue,int pSuit,int cValue,int cSuit) {
+	    	boolean playerWon = false;
+
+	    	if (pSuit == 2 || pSuit == 3) {
+	    		playerWon = true;
+	    	}else if(cSuit == 2 || cSuit == 3) {
+	    		playerWon = false;
+	    	}
+	    	
+	    	
+	    	return playerWon;
+	    }
+	    
+	    static boolean isTie(int pValue,int pSuit,int cValue,int cSuit) {
+	    	boolean isTie = false;
+	    	
+	    	boolean pRed = (pSuit == 1 || pSuit == 2);
+	    	boolean pDiaSpade = (pSuit == 2 || pSuit == 3);
+	    	boolean cRed = (cSuit == 1 || cSuit == 2);
+	    	boolean cDiaSpade = (cSuit == 2 || cSuit == 3);
+	    	boolean sameValue = (pValue == cValue);
+	    			
+	    	if (pRed && pDiaSpade && cRed && cDiaSpade && sameValue) {
+	    		isTie = true;
+	    	}
+	    	
+	    	return isTie;
+	    }
+	    
+	    static String getSuit(int suit) {
+	    	
+	    	String output = "";
+	    	if (suit == 1) {
+	    		output = "\u2665";
+	    	}else if (suit == 2) {
+	    		output = "\u2663";
+	    	}else if (suit == 3) {
+	    		output = "\u2660";
+	    	}else if (suit == 4) {
+	    		output = "\u2666";
+	    	}
+	    	
+	    	return output;
 	    }
 	    
 	    static int[] createCards() {
