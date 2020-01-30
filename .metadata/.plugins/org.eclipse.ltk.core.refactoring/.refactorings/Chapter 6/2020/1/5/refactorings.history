@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Change method &apos;static void chapter6.SimpleCardGame.game()&apos; to &apos;static void createCards()&apos;&#x0D;&#x0A;- Original project: &apos;Chapter 6&apos;&#x0D;&#x0A;- Original element: &apos;chapter6.SimpleCardGame.game()&apos;&#x0D;&#x0A;- New name: &apos;createCards&apos;" delegate="false" deprecate="true" description="Change method &apos;game&apos;" flags="589830" id="org.eclipse.jdt.ui.change.method.signature" input="/src&lt;chapter6{SimpleCardGame.java[SimpleCardGame~game" name="createCards" stamp="1580348710357" version="1.0"/>
+</session>

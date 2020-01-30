@@ -1,0 +1,59 @@
+package chapter6;
+
+import javax.swing.JOptionPane;
+
+public class SimpleCardGame {
+
+	public static void main(String[] args) {
+		
+		heading();
+		
+		createCards();
+		
+
+		}
+
+	    static void heading() {
+		
+	    	System.out.println("---------------------------");
+			System.out.println("|                         |");
+			System.out.println("|      Samuel Herman      |");
+			System.out.println("|   AP Computer Science   |");
+			System.out.println("|        B Period         |");
+			System.out.println("|       Heading MK2       |");
+			System.out.println("|                         |");
+			System.out.println("---------------------------");
+
+	    }
+	    
+	    static void game() {
+	    	
+	    	int pValue,pSuit,cValue,cSuit = createCards();
+	    	System.out.println("pValue " + pValue);
+	    }
+	    
+	    static int createCards() {
+	    	
+	    	int valueInput = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter a value 1 - 13: ","Input Value",JOptionPane.QUESTION_MESSAGE));
+	    	int suitInput = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter a suit 1 - 4: ","Input Suit",JOptionPane.QUESTION_MESSAGE));
+	    	
+	    	int comValue = (int)(Math.random()*((13-1)+1))+1;
+	    	int comSuit = (int)(Math.random()*((4-1)+1))+1;
+	    	
+
+	    	// Red card is higher of 2
+	    	// Black card is lower
+	    	
+	    	//tie
+	    	//One holding red card wins
+	    	
+	    	//another tie
+	    	//One with diamonds or spades wins
+	    	System.out.println("valueInput " + valueInput);
+	    	return valueInput + suitInput;
+	    	//return suitInput;
+	    	//return comValue;
+	    	//return comSuit;
+	    }
+	    
+}

@@ -1,0 +1,37 @@
+package chapter6;
+
+import javax.swing.JOptionPane;
+
+public class SimpleCardGame {
+
+	public static void main(String[] args) {
+		
+		heading();
+		
+		game();
+
+		}
+
+	    static void heading() {
+		
+	    	System.out.println("---------------------------");
+			System.out.println("|                         |");
+			System.out.println("|      Samuel Herman      |");
+			System.out.println("|   AP Computer Science   |");
+			System.out.println("|        B Period         |");
+			System.out.println("|       Heading MK2       |");
+			System.out.println("|                         |");
+			System.out.println("---------------------------");
+
+	    }
+	    
+	    static void game() {
+	    	
+	    	int valueInput = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter a value 1 - 13: ","Input Value",JOptionPane.QUESTION_MESSAGE));
+	    	int suitInput = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter a suit 1 - 4: ","Input Suit",JOptionPane.QUESTION_MESSAGE));
+	    	
+
+	    	
+	    }
+	    
+}
