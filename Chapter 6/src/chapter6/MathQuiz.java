@@ -315,6 +315,7 @@ public class MathQuiz {
 	    	
 	    	for (int x = 1; x <= amount; x++) {
 	    		
+	    		rNum = (int)(Math.random()*(4-1)+1)+1;
 	    		triesTaken = 0;
 	    		currentTry = 1;
 	    		
